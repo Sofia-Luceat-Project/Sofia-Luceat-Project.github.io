@@ -1,0 +1,1154 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Sofia-Luceat-Project</title><description>サークル</description><link>https://sofia-luceat-project.github.io/</link><language>zh-CN</language><item><title>カスタムMarkdown構文テスト</title><link>https://sofia-luceat-project.github.io/posts/wiki/syntax-test/</link><guid isPermaLink="true">https://sofia-luceat-project.github.io/posts/wiki/syntax-test/</guid><description>カスタムMarkdownコンポーネントの使用例とテスト</description><pubDate>Fri, 21 Nov 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;カスタムMarkdown構文テスト&lt;/h1&gt;
+&lt;p&gt;この記事では、実装されたカスタムMarkdownコンポーネントの使用例を示します。&lt;/p&gt;
+&lt;h2&gt;1. ゲームスペック (game-spec)&lt;/h2&gt;
+&lt;p&gt;ゲームの情報を表示します。&lt;/p&gt;
+&lt;p&gt;::game-spec{genre=&quot;Action RPG&quot; players=&quot;1-4&quot; platform=&quot;PC, PlayStation 5, Xbox Series X|S&quot; release=&quot;2024-01-15&quot;}&lt;/p&gt;
+&lt;h2&gt;2. YouTube埋め込み (youtube)&lt;/h2&gt;
+&lt;p&gt;YouTube動画を軽量な埋め込み形式で表示します。クリックするまで読み込まれません。&lt;/p&gt;
+&lt;p&gt;::youtube{id=&quot;dQw4w9WgXcQ&quot;}&lt;/p&gt;
+&lt;h2&gt;3. 画像比較 (compare-image)&lt;/h2&gt;
+&lt;p&gt;2つの画像をスライダーで比較できます。&lt;/p&gt;
+&lt;p&gt;::compare-image{before=&quot;https://sofia-luceat-project.github.io/avatar.webp&quot; after=&quot;https://sofia-luceat-project.github.io/137103134master1200.jpg&quot; label=&quot;改善前と改善後の比較&quot;}&lt;/p&gt;
+</content:encoded></item><item><title>Dark Survivor 開発 Wiki</title><link>https://sofia-luceat-project.github.io/posts/wiki/dark-survivor-dev-wiki/</link><guid isPermaLink="true">https://sofia-luceat-project.github.io/posts/wiki/dark-survivor-dev-wiki/</guid><description>ゲーム「Dark Survivor」の開発に参加するためのWikiです。</description><pubDate>Sat, 15 Nov 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;はじめに&lt;/h2&gt;
+&lt;p&gt;このページは、ゲーム『Dark Survivor』の開発に参加するための情報をまとめたWikiです。
+開発を始める前に、このページを一読してください。&lt;/p&gt;
+&lt;h2&gt;開発環境のセットアップ&lt;/h2&gt;
+&lt;p&gt;開発に必要なソフトウェアです。各カードから公式サイトにアクセスし、ダウンロードとインストールを行ってください。&lt;/p&gt;
+&lt;p&gt;::link-card{url=&quot;https://zed.dev/&quot; title=&quot;Zed&quot; description=&quot;高速でモダンなコードエディタ&quot;}&lt;/p&gt;
+&lt;p&gt;::link-card{url=&quot;https://git-scm.com/&quot; title=&quot;Git&quot; description=&quot;ソースコードのバージョン管理システム&quot;}&lt;/p&gt;
+&lt;p&gt;::link-card{url=&quot;https://www.redotengine.org/&quot; title=&quot;Redot Engine&quot; description=&quot;オープンソースのゲームエンジン&quot;}&lt;/p&gt;
+&lt;h2&gt;Gitの基本的な使い方&lt;/h2&gt;
+&lt;p&gt;プロジェクトのソースコードはGitで管理されています。基本的な操作方法を覚えておきましょう。&lt;/p&gt;
+&lt;p&gt;:::note[リポジトリの場所]
+プロジェクトのGitHubリポジトリは以下です。
+::github{repo=&quot;&lt;a href=&quot;https://github.com/Sofia-Luceat-Project/dark-survivor&quot;&gt;&amp;lt;owner&amp;gt;/&amp;lt;repository&amp;gt;&lt;/a&gt;&quot;}
+:::&lt;/p&gt;
+&lt;h3&gt;リポジトリのクローン&lt;/h3&gt;
+&lt;p&gt;最初に、上記のリポジトリをローカル環境にコピー（クローン）します。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/Sofia-Luceat-Project/dark-survivor.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;最新の変更を取り込む&lt;/h3&gt;
+&lt;p&gt;:::tip[作業を始める前に]
+コンフリクト（変更の衝突）を避けるため、作業を始める前には必ずリモートリポジトリの最新の変更を取り込みましょう。
+:::&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git pull origin main
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;ブランチの作成と切り替え&lt;/h3&gt;
+&lt;p&gt;新しい機能の実装やバグ修正など、作業単位でブランチを作成します。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# &quot;feature/new-feature&quot; という名前で新しいブランチを作成し、そのブランチに切り替える
+git checkout -b feature/new-feature
+
+# ブランチに切り替える
+git checkout feature/new-feature
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;変更を記録する&lt;/h3&gt;
+&lt;p&gt;変更したファイルをステージングし、コミットメッセージを付けて記録します。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 変更したファイルをすべてステージングする
+git add .
+
+# コミットメッセージを付けてコミットする
+git commit -m &quot;feat: 新機能を追加&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;変更をリモートに送信する&lt;/h3&gt;
+&lt;p&gt;ローカルでの変更をリモートリポジトリに反映させます。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git push origin feature/new-feature
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;開発ルール&lt;/h2&gt;
+&lt;p&gt;:::important[開発を円滑に進めるために]
+以下のルールを守って開発を進めてください。
+:::&lt;/p&gt;
+&lt;h3&gt;ブランチ運用ルール&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;main&lt;/code&gt; ブランチには直接コミットせず、開発用のブランチ（例: &lt;code&gt;develop&lt;/code&gt;）からブランチを作成してください。&lt;/li&gt;
+&lt;li&gt;機能追加は &lt;code&gt;feature/&lt;/code&gt;、バグ修正は &lt;code&gt;fix/&lt;/code&gt; などのプレフィックスをブランチ名に付けます。&lt;/li&gt;
+&lt;li&gt;作業が完了したら、プルリクエスト（またはマージリクエスト）を作成し、レビューを受けてからマージします。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;コミットメッセージ&lt;/h3&gt;
+&lt;p&gt;コミットメッセージは、変更内容が分かりやすいように記述します。
+フォーマット: &lt;code&gt;&amp;lt;type&amp;gt;: &amp;lt;subject&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;例:&lt;/strong&gt; &lt;code&gt;feat: プレイヤーの移動機能を追加&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;例:&lt;/strong&gt; &lt;code&gt;fix: 敵が動かなくなるバグを修正&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;コーディングスタイル&lt;/h3&gt;
+&lt;h4&gt;Godotスタイルガイド&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ファイル名&lt;/strong&gt;: &lt;code&gt;snake_case&lt;/code&gt;（例: &lt;code&gt;player_controller.gd&lt;/code&gt;, &lt;code&gt;main_menu.tscn&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ノード名&lt;/strong&gt;: &lt;code&gt;PascalCase&lt;/code&gt;（例: &lt;code&gt;Player&lt;/code&gt;, &lt;code&gt;EnemySpawner&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;クラス名 (class_name)&lt;/strong&gt;: &lt;code&gt;PascalCase&lt;/code&gt;（例: &lt;code&gt;PlayerController&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;シグナル名&lt;/strong&gt;: &lt;code&gt;past_tense&lt;/code&gt;（過去形）（例: &lt;code&gt;tree_entered&lt;/code&gt;, &lt;code&gt;health_depleted&lt;/code&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;コンポーネント指向アプローチ&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;player.tscn&lt;/code&gt;や&lt;code&gt;enemy.tscn&lt;/code&gt;のように、1つのエンティティは複数の子ノード（コンポーネント）から構成されます。&lt;/li&gt;
+&lt;li&gt;例えば、&lt;code&gt;Player&lt;/code&gt;シーンは「移動を処理するスクリプト」「ステータスを管理するノード」「アニメーションを制御するノード」といったように、機能ごとにノードが分割されています。&lt;/li&gt;
+&lt;li&gt;これにより、機能の再利用性が高まり、単一のスクリプトが肥大化するのを防ぎます。&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded></item><item><title>【初心者向け】サイトの記事作成ガイド</title><link>https://sofia-luceat-project.github.io/posts/wiki/how-to-write-articles/</link><guid isPermaLink="true">https://sofia-luceat-project.github.io/posts/wiki/how-to-write-articles/</guid><description>プログラミングの知識がなくても大丈夫！このサイトで記事を投稿する方法を、誰にでも分かるように丁寧に解説します。</description><pubDate>Sat, 15 Nov 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;はじめに&lt;/h2&gt;
+&lt;p&gt;このページは、「ウェブサイトの記事を書いてみたいけど、やり方が分からない…」という方向けのガイドです。
+専門的な知識は一切不要です。パソコンの基本的な操作ができれば、誰でも簡単に記事を作成し、公開できます。&lt;/p&gt;
+&lt;p&gt;一緒に手順を追いながら、あなたの最初の記事を完成させましょう！&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;ステップ1：記事ファイルの準備&lt;/h2&gt;
+&lt;p&gt;まず、記事の「原稿用紙」となるファイルを用意します。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;フォルダを開く&lt;/strong&gt;
+PCのエクスプローラーで、以下のフォルダを開きます。
+&lt;code&gt;website\src\content\posts&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;記事の種類を選ぶ&lt;/strong&gt;
+&lt;code&gt;posts&lt;/code&gt;フォルダの中には、&lt;code&gt;Blog&lt;/code&gt;や&lt;code&gt;Wiki&lt;/code&gt;といった、記事の種類ごとの小部屋（サブフォルダ）があります。書きたい記事の種類に合った部屋を選んでください。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;新しいファイルを作成する&lt;/strong&gt;
+選んだフォルダの中で、右クリックから「新規作成」→「テキスト ドキュメント」を選び、新しいファイルを作成します。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;ファイル名を付ける&lt;/strong&gt;
+ファイル名は、&lt;strong&gt;半角の英数字とハイフン (&lt;code&gt;-&lt;/code&gt;)&lt;/strong&gt; を使って、記事の内容が分かりやすい名前を付けます。最後に、ファイルの拡張子を &lt;code&gt;.txt&lt;/code&gt; から &lt;code&gt;.md&lt;/code&gt; に変更してください。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;良い例:&lt;/strong&gt; &lt;code&gt;my-first-blog.md&lt;/code&gt;, &lt;code&gt;dark-survivor-guide-1.md&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;悪い例:&lt;/strong&gt; &lt;code&gt;最初のブログ.md&lt;/code&gt; (日本語は使えません), &lt;code&gt;my first blog.md&lt;/code&gt; (スペースは使えません)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;これで、記事を書くための「原稿用紙」が準備できました！&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;ステップ2：記事の基本情報を入力する (Frontmatter)&lt;/h2&gt;
+&lt;p&gt;次に、作成したファイルをZedなどのテキストエディタで開き、記事の「プロフィール」を設定します。
+これは「Frontmatter（フロントマター）」と呼ばれるもので、記事のタイトルや公開日などをサイトに教えるための大切な情報です。&lt;/p&gt;
+&lt;p&gt;ファイルの&lt;strong&gt;一番最初&lt;/strong&gt;に、以下のテキストをコピーして貼り付けてください。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---
+title: ここに記事のタイトルを入力
+published: 2025-11-15
+description: &quot;ここに記事の簡単な説明文を入力（100文字程度がおすすめです）&quot;
+image: ./index.jpeg
+tags: [キーワード1, キーワード2]
+category: Blog
+draft: false
+series: Example
+---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;そして、各項目の &lt;code&gt;&quot;&lt;/code&gt; の中を、あなたの記事に合わせて書き換えます。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;title&lt;/code&gt;: 記事のタイトルです。読者が一番最初に目にする、最も重要な部分です。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;published&lt;/code&gt;: 記事を公開する日付です。&lt;code&gt;YYYY-MM-DD&lt;/code&gt; の形式で入力します。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;description&lt;/code&gt;: 記事の要約です。検索結果などにも表示されることがあります。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;image&lt;/code&gt;: 記事のサムネイル画像です。&lt;code&gt;./&lt;/code&gt; から始まる相対パスで指定します。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tags&lt;/code&gt;: 記事に関連するキーワードです。複数ある場合は &lt;code&gt;,&lt;/code&gt; で区切ります。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;category&lt;/code&gt;: 記事のカテゴリーです。&lt;code&gt;Blog&lt;/code&gt; や &lt;code&gt;Wiki&lt;/code&gt; など、ステップ1で選んだフォルダ名と同じにすると分かりやすいです。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;draft&lt;/code&gt;: &lt;code&gt;false&lt;/code&gt; にしておくと公開記事になります。もし下書きにしたい場合は &lt;code&gt;true&lt;/code&gt; にします。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;series&lt;/code&gt;: 記事のシリーズ名です。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2&gt;ステップ3：本文を書く (Markdown記法)&lt;/h2&gt;
+&lt;p&gt;基本情報の下に、いよいよ記事の本文を書いていきます。
+ウェブサイトの記事では、「Markdown（マークダウン）」という簡単な記法を使って、文章に見た目を付けていきます。&lt;/p&gt;
+&lt;h3&gt;見出し&lt;/h3&gt;
+&lt;p&gt;見出しは、文章の「章」や「節」を作るためのものです。&lt;code&gt;#&lt;/code&gt;（シャープ）の数で大きさが変わります。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;書き方:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 一番大きな見出し
+## 中くらいの見出し
+### 小さな見出し
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;表示例:&lt;/strong&gt;&lt;/p&gt;
+&lt;h1&gt;一番大きな見出し&lt;/h1&gt;
+&lt;h2&gt;中くらいの見出し&lt;/h2&gt;
+&lt;h3&gt;小さな見出し&lt;/h3&gt;
+&lt;h3&gt;文字の強調（太字）&lt;/h3&gt;
+&lt;p&gt;文章の中で特に伝えたい部分は、&lt;code&gt;**&lt;/code&gt;（アスタリスク2つ）で囲むと&lt;strong&gt;太字&lt;/strong&gt;になります。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;書き方:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;これは **とても重要** なポイントです。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;表示例:&lt;/strong&gt;
+これは &lt;strong&gt;とても重要&lt;/strong&gt; なポイントです。&lt;/p&gt;
+&lt;h3&gt;箇条書き&lt;/h3&gt;
+&lt;p&gt;情報を整理して伝えたいときは、箇条書きが便利です。文の先頭に &lt;code&gt;-&lt;/code&gt;（ハイフン）を付けます。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;書き方:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- りんご
+- ごりら
+- らっぱ
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;表示例:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;りんご&lt;/li&gt;
+&lt;li&gt;ごりら&lt;/li&gt;
+&lt;li&gt;らっぱ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;リンク&lt;/h3&gt;
+&lt;p&gt;他のウェブサイトを紹介したいときは、リンクを使いましょう。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;書き方:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[Google](https://www.google.com/)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;表示例:&lt;/strong&gt;
+&lt;a href=&quot;https://www.google.com/&quot;&gt;Google&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;便利な装飾機能&lt;/h3&gt;
+&lt;p&gt;このサイトでは、さらに見た目をリッチにするための特別な装飾が使えます。&lt;/p&gt;
+&lt;h4&gt;囲み枠（アドモニション）&lt;/h4&gt;
+&lt;p&gt;メモやヒント、注意点などを目立たせるための囲み枠です。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;書き方:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::note
+ここにメモしたいことを書きます。
+:::
+
+:::tip[ヒント]
+豆知識などを書くのに便利です。タイトルも付けられます。
+:::
+
+:::important
+読者に必ず読んでほしい重要な情報を書きます。
+:::
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;表示例:&lt;/strong&gt;
+:::note
+ここにメモしたいことを書きます。
+:::&lt;/p&gt;
+&lt;p&gt;:::tip[ヒント]
+豆知識などを書くのに便利です。タイトルも付けられます。
+:::&lt;/p&gt;
+&lt;p&gt;:::important
+読者に必ず読んでほしい重要な情報を書きます。
+:::&lt;/p&gt;
+&lt;h4&gt;リンクカード&lt;/h4&gt;
+&lt;p&gt;ウェブサイトへのリンクを、かっこいいカード形式で表示できます。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;書き方:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;::link-card{url=&quot;https&quot;//www.redotengine.org/&quot; title=&quot;Redot Engine&quot; description=&quot;Game Engine, Game Changer&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;表示例:&lt;/strong&gt;
+::link-card{url=&quot;https://www.redotengine.org/&quot; title=&quot;Redot Engine&quot; description=&quot;Game Engine, Game Changer&quot;}&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;やってみよう！記事作成の例&lt;/h2&gt;
+&lt;p&gt;これまでの内容をまとめた、記事のサンプルです。
+これをコピーして、自分の記事を作る際の参考にしてみてください。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---
+title: &quot;私の好きなゲームについて&quot;
+published: &quot;2025-11-15&quot;
+description: &quot;私が最近ハマっているゲームの魅力を紹介します！&quot;
+tags: [&quot;ゲーム&quot;, &quot;レビュー&quot;]
+category: &quot;Blog&quot;
+draft: false
+---
+
+## はじめに
+
+こんにちは！今日は私が夢中になっているゲーム『Dark Survivor』について語りたいと思います。
+
+## 『Dark Survivor』の魅力
+
+このゲームの魅力は、なんといってもその**爽快感**にあります！
+
+- 大量の敵をなぎ倒す楽しさ
+- レベルアップでどんどん強くなる成長要素
+- スキルの組み合わせを考える戦略性
+
+:::tip[ここがポイント！]
+最初は難しく感じるかもしれませんが、何度かプレイするうちにコツが掴めてきて、どんどん楽しくなります！
+:::
+
+## 公式サイトはこちら
+
+もっと詳しく知りたい方は、公式サイトをチェックしてみてください。
+
+::link-card{url=&quot;https://godotengine.org/&quot; title=&quot;Godot Engine&quot; description=&quot;このゲームはGodot Engineで作られています&quot;}
+
+## おわりに
+
+少しでも『Dark Survivor』の魅力が伝わったら嬉しいです。
+ぜひ皆さんもプレイしてみてください！
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;これでガイドは以上です。お疲れ様でした！
+自由に、楽しく、たくさんの記事を書いてみてくださいね。&lt;/p&gt;
+</content:encoded></item><item><title>ゲーム制作サークルの開発記録：Redot Engineを使ってみた！</title><link>https://sofia-luceat-project.github.io/posts/blog/redot-engine/</link><guid isPermaLink="true">https://sofia-luceat-project.github.io/posts/blog/redot-engine/</guid><pubDate>Thu, 13 Nov 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;🎮 ゲーム制作サークルの開発記録：Redot Engineを使ってみた！&lt;/h1&gt;
+&lt;p&gt;こんにちは！
+私たちは、友人同士で集まって活動しているゲーム制作サークルです。
+メンバーそれぞれが「作ってみたい！」という気持ちを持ち寄り、PCゲーム・スマホゲーム・カードゲーム・ボードゲームなど、形にとらわれない自由な制作を行っています。
+このブログでは、私たちが実際に使っているゲームエンジン「Redot Engine」について紹介します！&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;🔍 エンジン選びから始まった開発&lt;/h2&gt;
+&lt;p&gt;ゲーム制作を始めた当初、まず直面したのが**「どのエンジンを使うか問題」**でした。
+UnityやUnrealなど有名な選択肢はたくさんありますが、私たちが求めていたのは――&lt;/p&gt;
+&lt;p&gt;軽量で起動が速い&lt;/p&gt;
+&lt;p&gt;学びやすく、扱いやすい&lt;/p&gt;
+&lt;p&gt;小規模チームでも管理しやすい&lt;/p&gt;
+&lt;p&gt;そんな条件にぴったり合ったのが、Redot Engineだったんです。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;⚙️ Redot Engineとは？&lt;/h2&gt;
+&lt;p&gt;Redot Engineは、オープンソースのGodot Engineをベースにフォークされた派生エンジンです。
+特徴的なのは、Godot Engineとの完全な互換性を維持していること。
+つまり、Godotで作られたプロジェクトをそのままRedotで開けますし、基本的な機能・スクリプト構造も全く同じです。&lt;/p&gt;
+&lt;p&gt;違いがあるとすれば、内部処理のチューニングやビルド速度の改善といった細かい最適化です。
+そのおかげで、Godotを使っていた人でも移行コストゼロで開発を始められます！&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;🚀 使ってみた感想：軽い、安定してる、そして速い！&lt;/h2&gt;
+&lt;p&gt;Redot Engineを使い始めて約2週間。
+第一印象はとにかく「軽い！」のひとことでした。&lt;/p&gt;
+&lt;p&gt;エディタの起動が速い&lt;/p&gt;
+&lt;p&gt;シーン切り替えやプレビューがスムーズ&lt;/p&gt;
+&lt;p&gt;リソースの再読み込みがほぼストレスフリー&lt;/p&gt;
+&lt;p&gt;2Dゲーム制作では特に恩恵が大きく、複数のスプライトやタイルマップを扱ってもフレーム落ちが少ない印象です。
+また、Godot 4系で時々見られたUIのラグやクラッシュも、Redotではほとんど発生しません。&lt;/p&gt;
+&lt;p&gt;エンジン内部の最適化が効いているのを、実際の制作体験で実感できます。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;🧠 技術的なポイント&lt;/h2&gt;
+&lt;p&gt;少し専門的な話をすると、Redot Engineでは以下のような改善が行われています。&lt;/p&gt;
+&lt;p&gt;🔹 レンダリングの最適化&lt;/p&gt;
+&lt;p&gt;描画コマンドのバッチ化やGPUアクセスの効率化により、特に2Dレンダリング性能が向上。
+結果として、Godotと同じプロジェクトでも平均して15〜30%ほど処理が軽くなっています。&lt;/p&gt;
+&lt;p&gt;🔹 リソースキャッシュの刷新&lt;/p&gt;
+&lt;p&gt;エディタでの変更反映が速く、ロード時のストール（読み込み待ち）が大幅に減少。
+開発中の試行錯誤がとても快適になりました。&lt;/p&gt;
+&lt;p&gt;🔹 スクリプト環境の改善&lt;/p&gt;
+&lt;p&gt;GDScript、C#、C++、Rust（GDNative互換）に対応しており、拡張性の高さが魅力。
+内部のスクリプトVMも改良されていて、GDScriptの実行速度がGodotより約10〜15%高速化されています。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;🧩 Redot Engineから Rex Engine へ ― 次世代へのステップ&lt;/h2&gt;
+&lt;p&gt;私たちのサークルでは現在、Redot Engine を活用してゲーム制作を進めています。ですが同時に、「もうひとつ先へ進みたい」という思いから、Rex Engineという次世代エンジンの展開も視野に入れています。
+実はこの Rex Engine は、Redot Engine チームが開発を進めている、「Redot をベースとしつつ、互換性を保たない新機能も取り入れた“実験的”子プロジェクト」です。&lt;/p&gt;
+&lt;h3&gt;🔍 最新状況の整理&lt;/h3&gt;
+&lt;p&gt;Redot Engine は、もともと Godot Engine をフォークしており、Godot との互換性を保っています。&lt;/p&gt;
+&lt;p&gt;Rex Engine に関しては、Redot チームのブログが「Roadmaps」「ReX」タグで進捗を報告しており、互換性の枠を超えた「新しいアイデア／アーキテクチャ」を実験していることが窺えます。&lt;/p&gt;
+&lt;p&gt;つまり、Redot が Godot の高速・使いやすいフォーク版であるなら、Rex は「Redot をさらに発展・突破させるプロジェクト」という位置づけと言えます。&lt;/p&gt;
+&lt;h3&gt;✨ 私たちの“Rex への取り組み”方針&lt;/h3&gt;
+&lt;p&gt;現時点では、Rex Engine はまだ互換性を前提とするフェーズを超えており、Redot とは機能・仕様面で差異が出る可能性があります。&lt;/p&gt;
+&lt;p&gt;そのため、私たちはまず Redot での制作・学習を丁寧に行いながら、Rex の開発ロードマップを追っていく方針です。&lt;/p&gt;
+&lt;p&gt;実際、Redot チームから「ReX, RDScript, Roadmaps」などのアップデートが公開されています。&lt;/p&gt;
+&lt;p&gt;将来的には「Rex でしかできない試み（例：新スクリプト言語、モジュール構造の刷新、最適化手法）」を、サークルの作品制作に活かしたいと考えています。&lt;/p&gt;
+&lt;h3&gt;🛠 どう活用するか？&lt;/h3&gt;
+&lt;p&gt;Redot で安定制作基盤を確保：互換性・コミュニティ・ドキュメント面が整っているため、今すぐ作品を動かすためのエンジンとして最適。&lt;/p&gt;
+&lt;p&gt;Rex の動向をフォロー：Redot チームのブログや GitHub から、Rex の新機能・仕様変更をウォッチ。&lt;/p&gt;
+&lt;p&gt;将来的な移行を視野に：Rex が成熟してきたら、サークル作品の「次バージョン」や「技術実験版」で使う準備を整えます。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2&gt;💬 まとめ：Redotは“学びながら作れる”最高の環境&lt;/h2&gt;
+&lt;p&gt;Redot Engineは、&lt;/p&gt;
+&lt;p&gt;Godotと完全互換&lt;/p&gt;
+&lt;p&gt;軽量で動作が速い&lt;/p&gt;
+&lt;p&gt;コミュニティ主導のオープンな開発&lt;/p&gt;
+&lt;p&gt;という三拍子がそろった、とても扱いやすいエンジンです。
+ゲーム制作初心者でもすぐにプロジェクトを動かせますし、エンジン構造を理解したい中級者にもおすすめ。&lt;/p&gt;
+&lt;p&gt;これからもこのブログで、Redotの使い方や、Rex Engine開発の進捗などを発信していきます。
+「自分でもゲームを作ってみたい！」と思ったら、ぜひRedot Engineを試してみてください！&lt;/p&gt;
+&lt;p&gt;::link-card{url=&quot;https://www.redotengine.org/&quot; title=&quot;Redot Engine&quot; description=&quot;Game Engine, Game Changer&quot;}&lt;/p&gt;
+</content:encoded></item><item><title>dark-survivor</title><link>https://sofia-luceat-project.github.io/posts/game/dark-survivor/</link><guid isPermaLink="true">https://sofia-luceat-project.github.io/posts/game/dark-survivor/</guid><pubDate>Wed, 12 Nov 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;dark-survivorについて&lt;/h1&gt;
+&lt;p&gt;dark-survivorとは、ヴァンサバに影響を受けた2D Retro RPG世界観のゲームです。
+このゲームは、プレイヤーが主人公として、様々なステージに挑戦しながら、世界を救う冒険を遂げるものです。&lt;/p&gt;
+&lt;h1&gt;ゲーム機能&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;キャラクターのステータス管理&lt;/li&gt;
+&lt;li&gt;マップの探索と敵との戦闘&lt;/li&gt;
+&lt;li&gt;アイテムの入手と使用&lt;/li&gt;
+&lt;li&gt;プレイヤーの進捗状況の保存と復元&lt;/li&gt;
+&lt;li&gt;マップの拡張と新敵の登場&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;今後&lt;/h1&gt;
+&lt;p&gt;製品版version1.0.0を公開しましたら、アップデートやDLCの開発を予定しています。
+アップデートは、新しい敵やアイテムの登場、難易度の調整、グラフィックの改善などを行います。
+DLCは、追加のストーリーやモード、さらなる拡張内容を提供します。&lt;/p&gt;
+&lt;h1&gt;配布&lt;/h1&gt;
+&lt;p&gt;アルファバージョンを配布しています。これは開発バージョンであり、沢山のバグや機能不足があります。
+もし開発の手助けをしていただける方は、こちらのリンクから開発バージョンをダウンロードし、このサイトのコメント欄などでコメントを頂けると嬉しいです！
+::link-card{url=&quot;https://github.com/Sofia-Luceat-Project/release/releases/tag/dark-survivor-version-0.0.1-alpha&quot; title=&quot;リリース&quot; description=&quot;楽しんじゃうぞ！&quot;}&lt;/p&gt;
+&lt;h1&gt;連絡先&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;こちらのコメント欄&lt;/li&gt;
+&lt;li&gt;Twitter: @sofiagros&lt;/li&gt;
+&lt;li&gt;Discord: sofiagros&lt;/li&gt;
+&lt;li&gt;Github: sofia-gros&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;公式サーバー&lt;/h1&gt;
+&lt;p&gt;discordサーバーに参加して最新ニュースを見よう！
+::link-card{url=&quot;https://discord.gg/QZ693qAA3Z&quot; title=&quot;sofiaとLuceatのサークル&quot; description=&quot;Neow~&quot;}&lt;/p&gt;
+</content:encoded></item><item><title>リンクカードの例</title><link>https://sofia-luceat-project.github.io/posts/default/link-cards/</link><guid isPermaLink="true">https://sofia-luceat-project.github.io/posts/default/link-cards/</guid><description>リンクカード機能の使用ガイド。</description><pubDate>Sun, 23 Feb 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;リンクカードについて&lt;/h2&gt;
+&lt;p&gt;リンクカードは &lt;a href=&quot;https://starlight.astro.build&quot;&gt;Starlight&lt;/a&gt; の &lt;code&gt;&amp;lt;LinkCard&amp;gt;&lt;/code&gt; コンポーネントに似ており、リンクをカード形式で表示します。&lt;/p&gt;
+&lt;h2&gt;使用方法&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;更新され、呼び出し方法は以下のようになりました&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;カスタムタイトルと説明&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;::link-card{url=&quot;https://fuwari.oh1.top&quot; title=&quot;yCENzh&apos;s Blog&quot; description=&quot;Ciallo~&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;::link-card{url=&quot;https://fuwari.oh1.top&quot; title=&quot;yCENzh&apos;s Blog&quot; description=&quot;Ciallo~&quot;}&lt;/p&gt;
+&lt;h3&gt;画像付き&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;::link-card{url=&quot;https://github.com&quot; title=&quot;Github&quot; description=&quot;Hello World!&quot; icon=&quot;https://github.com/github.png&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;::link-card{url=&quot;https://github.com&quot; title=&quot;Github&quot; description=&quot;Hello World!&quot; icon=&quot;https://github.com/github.png&quot;}&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以下はすべて無効になりました&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Markdownの段落内に「裸の」リンク（説明文のないリンク）などを一つだけ含めると、自動的にリンクカードに変換されます。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;**外部リンク**
+
+https://astro.build/
+
+&amp;lt;https://github.com/saicaca/fuwari/&amp;gt;
+
+[https://fuwari.oh1.top/](https://fuwari.oh1.top/)
+
+**内部リンク**
+
+[/archive/](/archive/)
+
+詳細については、internalLinkオプションのセクションを参照してください。
+
+**IDN（国際化ドメイン名）**
+
+https://はじめよう.みんな/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;https://astro.build/&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/yCENzh/Fuwari-yCENzh/&quot;&gt;https://github.com/yCENzh/Fuwari-yCENzh/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://fuwari.oh1.top/&quot;&gt;https://fuwari.oh1.top/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/archive/&quot;&gt;/archive/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;https://はじめよう.みんな/&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!NOTE]
+カードが表示されたら、テーマカラーを変更したり、ダークモードを有効にしてみてください！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;設定オプション&lt;/h2&gt;
+&lt;p&gt;オプションは &lt;code&gt;astro.config.mjs&lt;/code&gt; ファイルで指定できます。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;...
+import fuwariLinkCard from &quot;./src/plugins/fuwari-link-card.ts&quot;
+...
+export default defineConfig({
+  ...
+  integrations: [
+    ...
+    fuwariLinkCard(), // ここにプラグインを追加
+    ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;プラグインの順序が複雑な場合は、remark プラグインとして指定することもできます。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;...
+import remarkLinkCard from &quot;./src/plugins/remark-link-card.ts&quot;
+...
+export default defineConfig({
+  ...
+  markdown: {
+    ...
+    remarkPlugins: [
+      ...
+      remarkLinkCard, // ここにプラグインを追加
+      ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名前&lt;/th&gt;
+&lt;th&gt;型&lt;/th&gt;
+&lt;th&gt;デフォルト&lt;/th&gt;
+&lt;th&gt;説明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;devMode&lt;/td&gt;
+&lt;td&gt;boolean&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://docs.astro.build/en/guides/environment-variables/#default-environment-variables&quot;&gt;import.meta.env.DEV&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;開発モードを有効または無効にします。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;excludedUrls&lt;/td&gt;
+&lt;td&gt;Array&amp;lt;string | RegExp&amp;gt;&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;特定のURLを処理から除外するための文字列または正規表現のリスト。これは他のプラグインとの競合を防ぐのにも役立ちます。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;linkAttributes&lt;/td&gt;
+&lt;td&gt;Object&lt;/td&gt;
+&lt;td&gt;{ target: &apos;&apos;, rel: &apos;&apos; }&lt;/td&gt;
+&lt;td&gt;外部リンクのターゲットと関係属性を設定します。これらの属性を未設定のままにして、他のプラグインに処理を委任することもできます。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;rewriteRules&lt;/td&gt;
+&lt;td&gt;Array&amp;lt;Object&amp;gt;&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;タイトルや説明など、リンクから取得した特定のメタデータ属性を書き換えます。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;base&lt;/td&gt;
+&lt;td&gt;string&lt;/td&gt;
+&lt;td&gt;&apos;/&apos;&lt;/td&gt;
+&lt;td&gt;Astroと同じベースパスを指定します。詳細は&lt;a href=&quot;https://docs.astro.build/en/reference/configuration-reference/#base&quot;&gt;こちら&lt;/a&gt;を参照してください。&lt;strong&gt;インテグレーションとして使用する場合、指定しないと自動的に決定されます。&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;defaultThumbnail&lt;/td&gt;
+&lt;td&gt;string&lt;/td&gt;
+&lt;td&gt;&apos;&apos;&lt;/td&gt;
+&lt;td&gt;メタデータに画像データが含まれていない場合に使用するデフォルトのサムネイル画像のパス。publicディレクトリからの相対パスである必要があります。例えば、画像がpublic/images/default-thumbnail.jpgにある場合、&lt;code&gt;defaultThumbnail&lt;/code&gt;を&apos;images/default-thumbnail.jpg&apos;に設定します。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;internalLink&lt;/td&gt;
+&lt;td&gt;Object&lt;/td&gt;
+&lt;td&gt;{ enabled: false, site: &apos;&apos; }&lt;/td&gt;
+&lt;td&gt;サイト内の内部リンク処理を有効にします。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;cache&lt;/td&gt;
+&lt;td&gt;Object&lt;/td&gt;
+&lt;td&gt;以下の詳細オプションを参照してください。&lt;/td&gt;
+&lt;td&gt;ビルドプロセス中に画像をダウンロードしてキャッシュします。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;リンク属性の設定&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名前&lt;/th&gt;
+&lt;th&gt;型&lt;/th&gt;
+&lt;th&gt;デフォルト&lt;/th&gt;
+&lt;th&gt;説明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;target&lt;/td&gt;
+&lt;td&gt;string&lt;/td&gt;
+&lt;td&gt;&apos;&apos;&lt;/td&gt;
+&lt;td&gt;リンクされたドキュメントを開く場所を指定します。デフォルト（空）では、リンクにターゲットは設定されません。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;rel&lt;/td&gt;
+&lt;td&gt;string&lt;/td&gt;
+&lt;td&gt;&apos;&apos;&lt;/td&gt;
+&lt;td&gt;現在のドキュメントとリンクされたドキュメントの関係を定義します。デフォルト（空）では、関係は設定されません。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;書き換えルール&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名前&lt;/th&gt;
+&lt;th&gt;型&lt;/th&gt;
+&lt;th&gt;デフォルト&lt;/th&gt;
+&lt;th&gt;説明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;url&lt;/td&gt;
+&lt;td&gt;RegExp&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;特定のURLに一致させるために使用される正規表現パターン。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;rewriteSteps&lt;/td&gt;
+&lt;td&gt;Array&amp;lt;Object&amp;gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;特定のメタデータ属性の書き換えルールを定義します。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;以下は、GitHubリポジトリを指すリンクから取得したメタデータの「title」と「description」を書き換える方法を示す例です。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;rewriteRules: [
+  {
+    url: /^https:\/\/github\.com\/[^\/]+\/[^\/]+\/?$/,
+    rewriteSteps: [
+      { key: &quot;title&quot;, pattern: /:.*/, replacement: &quot;&quot; },
+      {
+        key: &quot;description&quot;,
+        pattern: /(?: (?:\. )?Contribute to (?:.+\/.+) .+\.?)|(?: - (?:.+\/.+))$/,
+        replacement: &quot;&quot;,
+      },
+      {
+        key: &quot;description&quot;,
+        pattern: /^Contribute to (?:.+\/.+) .+\.?$/,
+        replacement: &quot;No description provided.&quot;,
+      },
+    ],
+  },
+],
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名前&lt;/th&gt;
+&lt;th&gt;型&lt;/th&gt;
+&lt;th&gt;デフォルト&lt;/th&gt;
+&lt;th&gt;説明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;key&lt;/td&gt;
+&lt;td&gt;string&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;書き換えられるメタデータ属性のキー。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;pattern&lt;/td&gt;
+&lt;td&gt;RegExp&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;メタデータ属性の現在の値に一致させるために使用される正規表現パターン。このパターンに一致する値の部分が置換されます。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;replacement&lt;/td&gt;
+&lt;td&gt;string&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;メタデータ属性で一致したパターンを置換する文字列。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;内部リンクの設定&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名前&lt;/th&gt;
+&lt;th&gt;型&lt;/th&gt;
+&lt;th&gt;デフォルト&lt;/th&gt;
+&lt;th&gt;説明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;enabled&lt;/td&gt;
+&lt;td&gt;boolean&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;内部リンク処理を有効または無効にします。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;site&lt;/td&gt;
+&lt;td&gt;string&lt;/td&gt;
+&lt;td&gt;&apos;&apos;&lt;/td&gt;
+&lt;td&gt;Astroと同じデプロイ済みURLを指定します。詳細は&lt;a href=&quot;https://docs.astro.build/en/reference/configuration-reference/#site&quot;&gt;こちら&lt;/a&gt;を参照してください。&lt;strong&gt;インテグレーションとして使用する場合、指定しないと自動的に決定されます。&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;キャッシュ設定&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;名前&lt;/th&gt;
+&lt;th&gt;型&lt;/th&gt;
+&lt;th&gt;デフォルト&lt;/th&gt;
+&lt;th&gt;説明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;enabled&lt;/td&gt;
+&lt;td&gt;boolean&lt;/td&gt;
+&lt;td&gt;false&lt;/td&gt;
+&lt;td&gt;キャッシュを有効または無効にします。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;outDir&lt;/td&gt;
+&lt;td&gt;string&lt;/td&gt;
+&lt;td&gt;&apos;./dist/&apos;&lt;/td&gt;
+&lt;td&gt;出力ディレクトリのパス。詳細は&lt;a href=&quot;https://docs.astro.build/en/reference/configuration-reference/#outdir&quot;&gt;こちら&lt;/a&gt;を参照してください。&lt;strong&gt;Astroと揃えることで、画像最適化などの機能の恩恵を受けることができます。&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;cacheDir&lt;/td&gt;
+&lt;td&gt;string&lt;/td&gt;
+&lt;td&gt;&apos;./link-card/&apos;&lt;/td&gt;
+&lt;td&gt;キャッシュディレクトリのパス。&lt;code&gt;devMode&lt;/code&gt;がtrueに設定されている場合、キャッシュされた画像への最終的なURLは&lt;code&gt;base + outDir + cacheDir&lt;/code&gt;になります。それ以外の場合は&lt;code&gt;base + cacheDir&lt;/code&gt;になります。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;maxFileSize&lt;/td&gt;
+&lt;td&gt;number&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;キャッシュする最大ファイルサイズ（バイト単位）。0で無制限。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;maxCacheSize&lt;/td&gt;
+&lt;td&gt;number&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;キャッシュの合計最大サイズ（バイト単位）。0で無制限。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;userAgent&lt;/td&gt;
+&lt;td&gt;string&lt;/td&gt;
+&lt;td&gt;&apos;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36&apos;&lt;/td&gt;
+&lt;td&gt;クライアントを指定するためにHTTPリクエストヘッダーに含まれる識別子。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3&gt;簡単なオプション設定&lt;/h3&gt;
+&lt;p&gt;このプラグインは、オプション設定を簡素化するために&lt;code&gt;@fastify/deepmerge&lt;/code&gt;を使用しています。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.npmjs.com/package/@fastify/deepmerge&quot;&gt;https://www.npmjs.com/package/@fastify/deepmerge&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;スタイリング用のHTML構造&lt;/h2&gt;
+&lt;p&gt;スタイルは&lt;code&gt;src/styles/link-card.css&lt;/code&gt;で指定され、HTMLは自動的に生成されます。以下は、スタイルをカスタマイズする際の参考となる構造の例です。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&quot;link-card__container&quot;&amp;gt;
+  &amp;lt;a href=&quot;https://astro.build/&quot; class=&quot;link-card&quot;&amp;gt;
+    &amp;lt;div class=&quot;link-card__info&quot;&amp;gt;
+      &amp;lt;div class=&quot;link-card__title&quot;&amp;gt;Astro&amp;lt;/div&amp;gt;
+      &amp;lt;div class=&quot;link-card__description&quot;&amp;gt;Astro builds fast content sites, powerful web applications, dynamic server APIs, and everything in-between.&amp;lt;/div&amp;gt;
+      &amp;lt;div class=&quot;link-card__metadata&quot;&amp;gt;
+        &amp;lt;div class=&quot;link-card__domain&quot;&amp;gt;
+          &amp;lt;img alt=&quot;favicon&quot; class=&quot;link-card__favicon&quot; src=&quot;https://www.google.com/s2/favicons?domain=astro.build&quot;&amp;gt;
+          &amp;lt;span class=&quot;link-card__domain-name&quot;&amp;gt;astro.build&amp;lt;/span&amp;gt;
+        &amp;lt;/div&amp;gt;
+      &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div class=&quot;link-card__thumbnail&quot;&amp;gt;
+      &amp;lt;img alt=&quot;Astro - Build the web you want.&quot; class=&quot;link-card__image&quot; src=&quot;https://astro.build/og/astro.jpg&quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/a&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>Markdown拡張機能</title><link>https://sofia-luceat-project.github.io/posts/default/markdown-extended/</link><guid isPermaLink="true">https://sofia-luceat-project.github.io/posts/default/markdown-extended/</guid><description>FuwariでのMarkdown機能について詳しく知る</description><pubDate>Sat, 01 May 1002 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;GitHubリポジトリカード&lt;/h2&gt;
+&lt;p&gt;GitHubリポジトリにリンクする動的なカードを追加できます。ページ読み込み時に、リポジトリ情報がGitHub APIから取得されます。&lt;/p&gt;
+&lt;p&gt;::github{repo=&quot;Fabrizz/MMM-OnSpotify&quot;}&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;::github{repo=&quot;&amp;lt;owner&amp;gt;/&amp;lt;repo&amp;gt;&quot;}&lt;/code&gt; というコードでGitHubリポジトリカードを作成します。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;::github{repo=&quot;saicaca/fuwari&quot;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;アドモニション（注意喚起ボックス）&lt;/h2&gt;
+&lt;p&gt;次のタイプの注意喚起ボックスがサポートされています：&lt;code&gt;note&lt;/code&gt;（注釈）&lt;code&gt;tip&lt;/code&gt;（ヒント）&lt;code&gt;important&lt;/code&gt;（重要）&lt;code&gt;warning&lt;/code&gt;（警告）&lt;code&gt;caution&lt;/code&gt;（注意）&lt;/p&gt;
+&lt;p&gt;:::note
+ユーザーがざっと目を通しているときでも考慮すべき情報を強調します。
+:::&lt;/p&gt;
+&lt;p&gt;:::tip
+ユーザーがより成功するための任意選択の情報。
+:::&lt;/p&gt;
+&lt;p&gt;:::important
+ユーザーが成功するために必要な重要な情報。
+:::&lt;/p&gt;
+&lt;p&gt;:::warning
+潜在的なリスクがあるため、ユーザーが直ちに注意を払う必要がある重要なコンテンツ。
+:::&lt;/p&gt;
+&lt;p&gt;:::caution
+ある行動がもたらす可能性のある否定的な結果。
+:::&lt;/p&gt;
+&lt;h3&gt;基本構文&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;:::note
+ユーザーがざっと目を通しているときでも考慮すべき情報を強調します。
+:::
+
+:::tip
+ユーザーがより成功するための任意選択の情報。
+:::
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;カスタムタイトル&lt;/h3&gt;
+&lt;p&gt;注意喚起ボックスのタイトルはカスタマイズできます。&lt;/p&gt;
+&lt;p&gt;:::note[私のカスタムタイトル]
+これはカスタムタイトル付きの注釈です。
+:::&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;:::note[私のカスタムタイトル]
+これはカスタムタイトル付きの注釈です。
+:::
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;GitHub構文&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!TIP]
+&lt;a href=&quot;https://github.com/orgs/community/discussions/16925&quot;&gt;GitHub構文&lt;/a&gt;もサポートされています。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; [!NOTE]
+&amp;gt; GitHub構文もサポートされています。
+
+&amp;gt; [!TIP]
+&amp;gt; GitHub構文もサポートされています。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;スポイラー&lt;/h3&gt;
+&lt;p&gt;テキストにスポイラーを追加できます。テキストは&lt;strong&gt;Markdown&lt;/strong&gt;構文もサポートしています。&lt;/p&gt;
+&lt;p&gt;内容：スポイラー[:spoiler[は隠されています &lt;strong&gt;えへへ&lt;/strong&gt;]]！&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;内容：スポイラー[:spoiler[は隠されています **えへへ**]]！
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>Expressive Code の例</title><link>https://sofia-luceat-project.github.io/posts/default/expressive-code/</link><guid isPermaLink="true">https://sofia-luceat-project.github.io/posts/default/expressive-code/</guid><description>Expressive Code を使用した Markdown でのコードブロックの表示方法。</description><pubDate>Sat, 10 Apr 1002 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;ここでは、&lt;a href=&quot;https://expressive-code.com/&quot;&gt;Expressive Code&lt;/a&gt; を使用したコードブロックの表示方法を探ります。提供されている例は公式ドキュメントに基づいており、詳細はそちらを参照してください。&lt;/p&gt;
+&lt;h2&gt;Expressive Code&lt;/h2&gt;
+&lt;h3&gt;構文ハイライト&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://expressive-code.com/key-features/syntax-highlighting/&quot;&gt;構文ハイライト&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;通常の構文ハイライト&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;console.log(&apos;This code is syntax highlighted!&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;ANSIエスケープシーケンスのレンダリング&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;ANSI colors:
+- Regular: [31mRed[0m [32mGr k；een[0m [33mYellow[0m [34mBlue[0m [35mMagenta[0m [36mCyan[0m
+- Bold:    [1;31mRed[0m [1;32mGreen[0m [1;33mYellow[0m [1;34mBlue[0m [1;35mMagenta[0m [1;36mCyan[0m
+- Dimmed:  [2;31mRed[0m [2;32mGreen[0m [2;33mYellow[0m [2;34mBlue[0m [2;35mMagenta[0m [2;36mCyan[0m
+
+256 colors (showing colors 160-177):
+[38;5;160m160 [38;5;161m161 [38;5;162m162 [38;5;163m163 [38;5;164m164 [38;5;165m165[0m
+[38;5;166m166 [38;5;167m167 [38;5;168m168 [38;5;169m169 [38;5;170m170 [38;5;171m171[0m
+[38;5;172m172 [38;5;173m173 [38;5;174m174 [38;5;175m175 [38;5;176m176 [38;5;177m177[0m
+
+Full RGB colors:
+[38;2;34;139;34mForestGreen - RGB(34, 139, 34)[0m
+
+Text formatting: [1mBold[0m [2mDimmed[0m [3mItalic[0m [4mUnderline[0m
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;エディタとターミナルのフレーム&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://expressive-code.com/key-features/frames/&quot;&gt;エディタとターミナルのフレーム&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;コードエディタのフレーム&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;console.log(&apos;Title attribute example&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- src/content/index.html --&amp;gt;
+&amp;lt;div&amp;gt;File name comment example&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;ターミナルのフレーム&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;echo &quot;This terminal frame has no title&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;Write-Output &quot;This one has a title!&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;フレームタイプの上書き&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;echo &quot;Look ma, no frame!&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;# Without overriding, this would be a terminal frame
+function Watch-Tail { Get-Content -Tail 20 -Wait $args }
+New-Alias tail Watch-Tail
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;テキストと行のマーカー&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://expressive-code.com/key-features/text-markers/&quot;&gt;テキストと行のマーカー&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;全行と行範囲のマーキング&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;// Line 1 - targeted by line number
+// Line 2
+// Line 3
+// Line 4 - targeted by line number
+// Line 5
+// Line 6
+// Line 7 - targeted by range &quot;7-8&quot;
+// Line 8 - targeted by range &quot;7-8&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;行マーカーのタイプ選択 (mark, ins, del)&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;function demo() {
+  console.log(&apos;this line is marked as deleted&apos;)
+  // This line and the next one are marked as inserted
+  console.log(&apos;this is the second inserted line&apos;)
+
+  return &apos;this line uses the neutral default marker type&apos;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;行マーカーへのラベル追加&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;// labeled-line-markers.jsx
+&amp;lt;button
+  role=&quot;button&quot;
+  {...props}
+  value={value}
+  className={buttonClassName}
+  disabled={disabled}
+  active={active}
+&amp;gt;
+  {children &amp;amp;&amp;amp;
+    !active &amp;amp;&amp;amp;
+    (typeof children === &apos;string&apos; ? &amp;lt;span&amp;gt;{children}&amp;lt;/span&amp;gt; : children)}
+&amp;lt;/button&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;独立した行への長いラベルの追加&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;// labeled-line-markers.jsx
+&amp;lt;button
+  role=&quot;button&quot;
+  {...props}
+
+  value={value}
+  className={buttonClassName}
+
+  disabled={disabled}
+  active={active}
+&amp;gt;
+
+  {children &amp;amp;&amp;amp;
+    !active &amp;amp;&amp;amp;
+    (typeof children === &apos;string&apos; ? &amp;lt;span&amp;gt;{children}&amp;lt;/span&amp;gt; : children)}
+&amp;lt;/button&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;diffライクな構文の使用&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;+this line will be marked as inserted
+-this line will be marked as deleted
+this is a regular line
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;--- a/README.md
++++ b/README.md
+@@ -1,3 +1,4 @@
++this is an actual diff file
+-all contents will remain unmodified
+ no whitespace will be removed either
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;構文ハイライトとdiffライクな構文の組み合わせ&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;  function thisIsJavaScript() {
+    // This entire block gets highlighted as JavaScript,
+    // and we can still add diff markers to it!
+-   console.log(&apos;Old code to be removed&apos;)
++   console.log(&apos;New and shiny code!&apos;)
+  }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;行内の個別テキストのマーキング&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;function demo() {
+  // Mark any given text inside lines
+  return &apos;Multiple matches of the given text are supported&apos;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;正規表現&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;console.log(&apos;The words yes and yep will be marked.&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;フォワードスラッシュのエスケープ&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;echo &quot;Test&quot; &amp;gt; /home/test.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;インラインマーカーのタイプ選択 (mark, ins, del)&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;function demo() {
+  console.log(&apos;These are inserted and deleted marker types&apos;);
+  // The return statement uses the default marker type
+  return true;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;ワードラップ&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://expressive-code.com/key-features/word-wrap/&quot;&gt;ワードラップ&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;ブロックごとのワードラップ設定&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;// Example with wrap
+function getLongString() {
+  return &apos;This is a very long string that will most probably not fit into the available space unless the container is extremely wide&apos;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;// Example with wrap=false
+function getLongString() {
+  return &apos;This is a very long string that will most probably not fit into the available space unless the container is extremely wide&apos;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;折り返し行のインデント設定&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;// Example with preserveIndent (enabled by default)
+function getLongString() {
+  return &apos;This is a very long string that will most probably not fit into the available space unless the container is extremely wide&apos;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;// Example with preserveIndent=false
+function getLongString() {
+  return &apos;This is a very long string that will most probably not fit into the available space unless the container is extremely wide&apos;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;折りたたみ可能なセクション&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://expressive-code.com/plugins/collapsible-sections/&quot;&gt;折りたたみ可能なセクション&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// All this boilerplate setup code will be collapsed
+import { someBoilerplateEngine } from &apos;@example/some-boilerplate&apos;
+import { evenMoreBoilerplate } from &apos;@example/even-more-boilerplate&apos;
+
+const engine = someBoilerplateEngine(evenMoreBoilerplate())
+
+// This part of the code will be visible by default
+engine.doSomething(1, 2, 3, calcFn)
+
+function calcFn() {
+  // You can have multiple collapsed sections
+  const a = 1
+  const b = 2
+  const c = a + b
+
+  // This will remain visible
+  console.log(`Calculation result: ${a} + ${b} = ${c}`)
+  return c
+}
+
+// All this code until the end of the block will be collapsed again
+engine.closeConnection()
+engine.freeMemory()
+engine.shutdown({ reason: &apos;End of example boilerplate code&apos; })
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;行番号&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://expressive-code.com/plugins/line-numbers/&quot;&gt;行番号&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;ブロックごとの行番号表示&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;// This code block will show line numbers
+console.log(&apos;Greetings from line 2!&apos;)
+console.log(&apos;I am on line 3&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr /&gt;
+&lt;pre&gt;&lt;code&gt;// Line numbers are disabled for this block
+console.log(&apos;Hello?&apos;)
+console.log(&apos;Sorry, do you know what line I am on?&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;開始行番号の変更&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;console.log(&apos;Greetings from line 5!&apos;)
+console.log(&apos;I am on line 6&apos;)
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>Fuwari シンプルガイド</title><link>https://sofia-luceat-project.github.io/posts/default/</link><guid isPermaLink="true">https://sofia-luceat-project.github.io/posts/default/</guid><description>このブログテンプレートの使い方</description><pubDate>Thu, 01 Apr 1002 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;カバー画像のソース: &lt;a href=&quot;https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/208fc754-890d-4adb-9753-2c963332675d/width=2048/01651-1456859105-(colour_1.5),girl,_Blue,yellow,green,cyan,purple,red,pink,_best,8k,UHD,masterpiece,male%20focus,%201boy,gloves,%20ponytail,%20long%20hair,.jpeg&quot;&gt;ソース&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;このブログテンプレートは &lt;a href=&quot;https://astro.build/&quot;&gt;Astro&lt;/a&gt; で構築されています。このガイドで言及されていないことについては、&lt;a href=&quot;https://docs.astro.build/&quot;&gt;Astro のドキュメント&lt;/a&gt; で答えが見つかるかもしれません。&lt;/p&gt;
+&lt;h2&gt;記事のFront-matter設定&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;---
+title: My First Blog Post
+published: 2023-09-09
+description: This is the first post of my new Astro blog.
+image: ./cover.jpg
+tags: [Foo, Bar]
+category: Front-end
+draft: false
+---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;属性&lt;/th&gt;
+&lt;th&gt;説明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;title&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;記事のタイトル。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;published&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;記事の公開日。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;description&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;記事の短い説明。インデックスページに表示されます。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;image&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;記事のカバー画像のパス。&amp;lt;br/&amp;gt;1. &lt;code&gt;http://&lt;/code&gt; または &lt;code&gt;https://&lt;/code&gt; で始まる場合：ウェブ画像を使用&amp;lt;br/&amp;gt;2. &lt;code&gt;/&lt;/code&gt; で始まる場合：&lt;code&gt;public&lt;/code&gt; ディレクトリ内の画像&amp;lt;br/&amp;gt;3. 上記の接頭辞がない場合：Markdownファイルからの相対パス&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;tags&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;記事のタグ。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;category&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;記事のカテゴリ。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;draft&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;この記事がまだ下書きの場合、表示されません。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2&gt;記事ファイルの置き場所&lt;/h2&gt;
+&lt;p&gt;記事ファイルは &lt;code&gt;src/content/posts/&lt;/code&gt; ディレクトリに配置する必要があります。サブディレクトリを作成して、記事やアセットをより良く整理することもできます。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;src/content/posts/
+├── post-1.md
+└── post-2/
+    ├── cover.png
+    └── index.md
+&lt;/code&gt;&lt;/pre&gt;
+</content:encoded></item><item><title>Markdownの例</title><link>https://sofia-luceat-project.github.io/posts/default/markdown/</link><guid isPermaLink="true">https://sofia-luceat-project.github.io/posts/default/markdown/</guid><description>Markdownブログ投稿の簡単な例。</description><pubDate>Thu, 01 Oct 1001 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;h1ヘッダー&lt;/h1&gt;
+&lt;p&gt;段落は空行で区切られます。&lt;/p&gt;
+&lt;p&gt;2番目の段落。&lt;em&gt;イタリック&lt;/em&gt;、&lt;strong&gt;太字&lt;/strong&gt;、そして&lt;code&gt;等幅フォント&lt;/code&gt;。箇条書きリストは次のようになります：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;これ&lt;/li&gt;
+&lt;li&gt;それ&lt;/li&gt;
+&lt;li&gt;もう一つ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;アスタリスクを考慮しないと、実際のテキスト内容は4列目から始まることに注意してください。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;引用ブロックは
+このように書きます。&lt;/p&gt;
+&lt;p&gt;必要であれば、複数段落にまたがることもできます。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;エムダッシュには3つのダッシュを使用します。範囲には2つのダッシュを使用します（例：「それはすべて12-14章にあります」）。3つのドット...は省略記号に変換されます。Unicodeもサポートされています。☺&lt;/p&gt;
+&lt;h2&gt;h2ヘッダー&lt;/h2&gt;
+&lt;p&gt;これは番号付きリストです：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;最初の項目&lt;/li&gt;
+&lt;li&gt;2番目の項目&lt;/li&gt;
+&lt;li&gt;3番目の項目&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;ここでも、実際のテキストが4列目から始まることに注意してください（左側から4文字）。これはコードサンプルです：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# もう一度言いますが...
+for i in 1 .. 10 { do-something(i) }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;ご想像の通り、4スペースでインデントされています。ちなみに、ブロックをインデントする代わりに、区切りブロックを使用することもできます：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;define foobar() {
+    print &quot;Welcome to flavor country!&quot;;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（これにより、コピー＆ペーストが容易になります）。Pandocに構文ハイライトさせるために、区切りブロックを任意でマークすることもできます：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import time
+# さあ、10まで数えよう！
+for i in range(10):
+    # (でも、*速すぎず*)
+    time.sleep(0.5)
+    print i
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;h3ヘッダー&lt;/h3&gt;
+&lt;p&gt;次はネストされたリストです：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;まず、これらの材料を手に入れます：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;にんじん&lt;/li&gt;
+&lt;li&gt;セロリ&lt;/li&gt;
+&lt;li&gt;レンズ豆&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;お湯を沸かします。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;すべてを鍋に入れ、このアルゴリズムに従います：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; 木のスプーンを見つける
+ 鍋の蓋を開ける
+ かき混ぜる
+ 鍋の蓋をする
+ 木のスプーンを鍋の取っ手に危なっかしく置く
+ 10分待つ
+ 最初のステップに戻る（または、終わったら火を止める）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;木のスプーンにぶつからないようにしてください。落ちてしまいます。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;ここでも、テキストが常に4スペースのインデントで揃っていることに注意してください（上記の項目3を続ける最後の行も同様です）。&lt;/p&gt;
+&lt;p&gt;これは&lt;a href=&quot;http://foo.bar&quot;&gt;ウェブサイト&lt;/a&gt;へのリンク、&lt;a href=&quot;local-doc.html&quot;&gt;ローカルドキュメント&lt;/a&gt;へのリンク、そして&lt;a href=&quot;#an-h2-header&quot;&gt;現在のドキュメントのセクション見出し&lt;/a&gt;へのリンクです。これは脚注です&lt;a href=&quot;%E8%84%9A%E6%B3%A8%E3%81%AE%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%81%AF%E3%81%93%E3%81%93%E3%81%AB%E6%9B%B8%E3%81%8D%E3%81%BE%E3%81%99%E3%80%82&quot;&gt;^1&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;テーブルは次のようになります：&lt;/p&gt;
+&lt;p&gt;サイズ 素材 色&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;9 レザー ブラウン
+10 ヘンプキャンバス ナチュラル
+11 ガラス 透明&lt;/p&gt;
+&lt;p&gt;表：靴、そのサイズ、および素材&lt;/p&gt;
+&lt;p&gt;（上記は表のキャプションです。）Pandocは複数行のテーブルもサポートしています：&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;キーワード テキスト&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;赤 夕日、りんご、その他
+赤または赤みがかったもの。&lt;/p&gt;
+&lt;p&gt;緑 葉、草、カエル
+そして、それであることは
+簡単ではない他のもの。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;次に水平線が続きます。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;これは定義リストです：&lt;/p&gt;
+&lt;p&gt;りんご
+: アップルソースを作るのに適しています。&lt;/p&gt;
+&lt;p&gt;オレンジ
+: 柑橘類！&lt;/p&gt;
+&lt;p&gt;トマト
+: &quot;tomatoe&quot;に&quot;e&quot;はありません。&lt;/p&gt;
+&lt;p&gt;ここでも、テキストは4スペースでインデントされています。（各用語/定義ペアの間に空行を入れると、より見やすくなります。）&lt;/p&gt;
+&lt;p&gt;これは「ラインブロック」です：&lt;/p&gt;
+&lt;p&gt;| 1行目
+| 2行目
+| 3行目&lt;/p&gt;
+&lt;p&gt;画像は次のように指定できます：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[//]: # (![サンプル画像](./demo-banner.png &quot;模範的な画像&quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;インライン数式はこのように記述します：$\omega = d\phi / dt$。ディスプレイ数式は独立した行にし、二重ドル記号で囲む必要があります：&lt;/p&gt;
+&lt;p&gt;$$I = \int \rho R^{2} dV$$&lt;/p&gt;
+&lt;p&gt;$$
+\begin{equation*}
+\pi
+=3.1415926535
+;8979323846;2643383279;5028841971;6939937510;5820974944
+;5923078164;0628620899;8628034825;3421170679;\ldots
+\end{equation*}
+$$&lt;/p&gt;
+&lt;p&gt;また、文字通りに表示したい句読点文字は、バックスラッシュでエスケープできることに注意してください。例：`foo`、*bar*など。&lt;/p&gt;
+</content:encoded></item><item><title>投稿に動画を含める</title><link>https://sofia-luceat-project.github.io/posts/default/video/</link><guid isPermaLink="true">https://sofia-luceat-project.github.io/posts/default/video/</guid><description>この投稿では、ブログ投稿に埋め込み動画を含める方法を示します。</description><pubDate>Sat, 01 Aug 1001 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;YouTubeや他のプラットフォームから埋め込みコードをコピーし、Markdownファイルに貼り付けるだけです。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---
+title: Include Video in the Post
+published: 2023-10-19
+// ...
+---
+
+&amp;lt;iframe width=&quot;100%&quot; height=&quot;468&quot; src=&quot;https://www.youtube.com/embed/5gIf0_xpFPI?si=N1WTorLKL0uwLsU_&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allowfullscreen&amp;gt;&amp;lt;/iframe&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;YouTube&lt;/h2&gt;
+&lt;p&gt;&amp;lt;iframe width=&quot;100%&quot; height=&quot;468&quot; src=&quot;https://www.youtube.com/embed/5gIf0_xpFPI?si=N1WTorLKL0uwLsU_&quot; title=&quot;YouTube video player&quot; frameborder=&quot;0&quot; allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot; allowfullscreen&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/p&gt;
+&lt;h2&gt;Bilibili&lt;/h2&gt;
+&lt;p&gt;&amp;lt;iframe width=&quot;100%&quot; height=&quot;468&quot; src=&quot;//player.bilibili.com/player.html?bvid=BV1fK4y1s7Qf&amp;amp;p=1&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot;&amp;gt; &amp;lt;/iframe&amp;gt;&lt;/p&gt;
+</content:encoded></item><item><title>ドラフトの例</title><link>https://sofia-luceat-project.github.io/posts/default/draft/</link><guid isPermaLink="true">https://sofia-luceat-project.github.io/posts/default/draft/</guid><pubDate>Tue, 01 Jul 1000 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;この記事はドラフトです&lt;/h1&gt;
+&lt;p&gt;この記事は現在ドラフト状態であり、公開されていません。そのため、一般の読者には表示されません。内容はまだ作成中であり、さらなる編集やレビューが必要な場合があります。&lt;/p&gt;
+&lt;p&gt;記事を公開する準備ができたら、Frontmatter の &quot;draft&quot; フィールドを &quot;false&quot; に更新できます。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---
+title: Draft Example
+published: 2024-01-11T04:40:26.381Z
+tags: [Markdown, Blogging, Demo]
+category: Examples
+draft: false
+---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;PS: それはそうと、どうやってこれを送ったか、当ててみてください（賞品はありません）。&lt;/p&gt;
+</content:encoded></item></channel></rss>

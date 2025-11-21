@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /_astro/
+
+Sitemap: https://sofia-luceat-project.github.io/sitemap-index.xml
